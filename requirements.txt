@@ -1,2 +1,4 @@
-apache-airflow>=1.10.11
+wheel
+build
+apache-airflow>=2.2
 TM1py>=1.4.1
