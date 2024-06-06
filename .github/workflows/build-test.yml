@@ -41,7 +41,7 @@ jobs:
     
     - name: Add TM1 connection to Airflow
       run: |
-        curl -X POST -H "Content-Type: application/json" -d "${{ vars.TM1CONN }}" http://localhost:8080/api/v1/connections --user airflow:airflow
+        curl -X POST -H "Content-Type: application/json" -d '${{ vars.TM1CONN }}' http://localhost:8080/api/v1/connections --user airflow:airflow
             
     - name: Test Airflow TM1 provider
       run: |
