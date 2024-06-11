@@ -41,7 +41,8 @@ jobs:
     
     - name: Add TM1 connection to Airflow
       run: |
-        curl -X POST -H "Content-Type: application/json" -d '${{ vars.TM1CONN }}' http://localhost:8080/api/v1/connections --user airflow:airflow
+        DOCKID=$(docker ps | grep webserver | awk '{print $1}')
+        docker exec -it $DOCKID airflow connections add tm1_conn --conn-type tm1 --conn-login admin --conn-password admin --conn-host localhost --conn-port 5898 --conn-schema "" --conn-extra ""
             
     - name: Test Airflow TM1 provider
       run: |
