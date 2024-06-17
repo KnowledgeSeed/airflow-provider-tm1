@@ -44,7 +44,6 @@ jobs:
         DOCKID=$(docker ps -q --filter "name=tests_integration-airflow-worker-1")
         docker exec -i $DOCKID /bin/bash <<-EOF
           airflow connections get tm1_conn
-          echo "hello"
           exit_status=$?
           if [ $exit_status -eq 0 ]; then
               docker exec $DOCKID airflow connections add tm1_conn --conn-type tm1 --conn-login admin --conn-password admin --conn-host tm1-centos7 --conn-port 5360 --conn-schema "" --conn-extra ""
@@ -65,6 +64,13 @@ jobs:
           airflow dags test airflow_test_timeout_dag >> logs/integration_test_airflow_test_timeout_dag.log
         EOF
 
+    - name: Archive production artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: integration-test-logs
+        path: |
+          logs/*
+    
     - name: Stop docker containers
       if: always()
       run: |
