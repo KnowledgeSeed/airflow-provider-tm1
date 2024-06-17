@@ -136,3 +136,5 @@ dmypy.json
 *.swp
 *.txt
 logs/
+
+my.secrets

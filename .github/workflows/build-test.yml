@@ -41,16 +41,32 @@ jobs:
     
     - name: Add TM1 connection to Airflow
       run: |
-        DOCKID=$(docker ps -q --filter "name=tests_integration-airflow-webserver-1")
-        docker exec $DOCKID airflow connections add tm1_conn --conn-type tm1 --conn-login admin --conn-password admin --conn-host localhost --conn-port 5898 --conn-schema "" --conn-extra ""
-            
+        DOCKID=$(docker ps -q --filter "name=tests_integration-airflow-worker-1")
+        docker exec -i $DOCKID /bin/bash <<-EOF
+          airflow connections get tm1_conn
+          echo "hello"
+          exit_status=$?
+          if [ $exit_status -eq 0 ]; then
+              docker exec $DOCKID airflow connections add tm1_conn --conn-type tm1 --conn-login admin --conn-password admin --conn-host tm1-centos7 --conn-port 5360 --conn-schema "" --conn-extra ""
+          else
+              echo "Connection already added"
+          fi
+        EOF
+
     - name: Test Airflow TM1 provider
       run: |
         cd tests_integration
         echo "Running tests..."
-        # TODO
-    
+        DOCKID=$(docker ps -q --filter "name=tests_integration-airflow-worker-1")
+        docker exec -i $DOCKID /bin/bash <<-EOF
+          airflow dags test airflow_test_success_dag > logs/integration_test_airflow_test_success_dag.log
+          airflow dags test airflow_test_aborted_dag >> logs/integration_test_airflow_test_aborted_dag.log
+          airflow dags test airflow_test_data_error_dag >> logs/integration_test_airflow_test_data_error_dag.log
+          airflow dags test airflow_test_timeout_dag >> logs/integration_test_airflow_test_timeout_dag.log
+        EOF
+
     - name: Stop docker containers
+      if: always()
       run: |
         cd tests_integration
         docker compose down
