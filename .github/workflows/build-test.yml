@@ -65,6 +65,7 @@ jobs:
         EOF
 
     - name: Archive production artifacts
+      if: always()
       uses: actions/upload-artifact@v4
       with:
         name: integration-test-logs
