@@ -70,7 +70,7 @@ jobs:
       with:
         name: integration-test-logs
         path: |
-          logs/*
+          tests_integration/logs/*
     
     - name: Stop docker containers
       if: always()
