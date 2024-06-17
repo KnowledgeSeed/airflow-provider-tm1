@@ -1,10 +1,10 @@
 ﻿601,100
-602,"myprocess"
+602,"airflow_test_params_success"
 562,"NULL"
 586,
 585,
 564,
-565,"o6uw\A8rMAXyiWEaEP[dlB77No=M2I1t]blbwjRF`<OxC5UD:Ba[\]\JQ6?CA8jvbnqXd6uM_MHmdjags>kq3lUU[P=PQiO0ZtrndRoLzIbXxaYioga3OcrJDJnuZ9_u[b\hSQ\wfwXPJ6v0;hwVqz9t[?=@_]1TY_JVg06yhcIcFXdcGcYSp]iVNfeRtzj@QTj^bTV["
+565,"nsm<R;N=7u=@XVa1ReGTh3DFgs9DdpWODG>u[JJNwhgdmp`^ANoKhZiPQI5qDoqVnFG>:AC:2z9cfqp0`Oz9^Vl7sb=9D4Cp;FnOS@soYLUNO5UKj3:ERlLLi3ZESo?aGpMWWquiW\j5hD1^bNhPg`eRyZ`XCwhNRv2g2Vq;<BlBs=<2M3k<lLu]`UA_Yz[AyMKyauRP"
 559,1
 928,0
 593,
@@ -29,19 +29,32 @@
 561,0
 590,0
 637,0
-577,0
-578,0
-579,0
-580,0
-581,0
-582,0
+577,2
+testParam1
+testParam2
+578,2
+2
+1
+579,2
+1
+2
+580,2
+0
+0
+581,2
+0
+0
+582,2
+VarType=32ColType=827
+VarType=33ColType=827
 603,0
-572,5
+572,6
 #****Begin: Generated Statements***
 #****End: Generated Statements****
 
-Source = 'intranet_production';
-ODBCOpen(Source, 'user', 'password');
+
+LogOutput('INFO', 'airflow_test_success executed. testParam1:' | testParam1);
+
 573,2
 #****Begin: Generated Statements***
 #****End: Generated Statements****
