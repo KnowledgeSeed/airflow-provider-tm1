@@ -33,6 +33,7 @@ Create a connection in Airflow with at least the following parameters set:
 
 * Host
 * Login
+* Password
 * Port
 * Extras
   * ssl
@@ -44,15 +45,28 @@ Any other parameter accepted by the TM1py RestService constructor (eg base_url, 
 In your DAG file:
 
 ```python
-from airflow_tm1.hooks.tm1 import TM1Hook
+from airflow_providers_tm1.operators.tm1_run_ti import TM1RunTIOperator
 
-tm1_hook = TM1Hook(tm1_conn_id="tm1_default")
-tm1 = tm1_hook.get_conn()
+...
+
+t1 = TM1RunTIOperator (
+        task_id='t1',
+        tm1_conn_id='tm1_conn',
+        process_name='airflow_test_params_success_dag',
+        tm1_params={'testParam1': 'testParamValue'},
+        timeout=20,
+        cancel_at_timeout=True
+    )
 ```
 
-This will attempt to connect to the TM1 server using the details provided and initialise an instance of the TM1Service class than be accessed at `tm1_hook.tm1`
+This will attempt to connect to the TM1 server using the details provided and initialise an instance of the TM1Service class than be accessed at `airflow_providers_tm1.hooks.tm1.TM1Hook`
 
 See [TM1py](https://github.com/cubewise-code/tm1py) for more details.
+
+It's important to mention that TM1Py will execute TI process in asynchronous mode. The operator submits the request, receives the `async_id` from TM1 and starts polling the result using `async_id` until the response is retrieved or times out.
+Timeout is defined in seconds, default value is 300 seconds. It's also important that Airflow-side timeout does not 
+involve automatically the cancellation of the TI process. If `cancel_at_timeout` is set `True`, Airflow will make an attempt 
+to cancel the long-running TI process.
 
 ## Manual integration testing
 
