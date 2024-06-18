@@ -64,7 +64,7 @@ jobs:
         name: integration-test-logs
         path: |
           tests_integration/logs/*
-          test_sintegration/tm1models/24Retail/tm1server.log
+          tests_integration/tm1models/24Retail/tm1server.log
           tests_integration/tm1models/24Retail/tm1pocesserror*.log
     
     - name: Stop docker containers
