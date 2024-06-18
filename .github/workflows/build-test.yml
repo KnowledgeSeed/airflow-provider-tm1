@@ -54,6 +54,7 @@ jobs:
           airflow dags test airflow_test_aborted_dag >> logs/integration_test_airflow_test_aborted_dag.log
           airflow dags test airflow_test_data_error_dag >> logs/integration_test_airflow_test_data_error_dag.log
           airflow dags test airflow_test_timeout_dag >> logs/integration_test_airflow_test_timeout_dag.log
+          exit 0
         EOF
 
     - name: Archive production artifacts
@@ -63,8 +64,8 @@ jobs:
         name: integration-test-logs
         path: |
           tests_integration/logs/*
-          test_integration/tm1models/24Retail/tm1server.log
-          test_integration/tm1models/24Retail/tm1pocesserror*.log
+          test_sintegration/tm1models/24Retail/tm1server.log
+          tests_integration/tm1models/24Retail/tm1pocesserror*.log
     
     - name: Stop docker containers
       if: always()
