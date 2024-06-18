@@ -65,7 +65,7 @@ jobs:
         path: |
           tests_integration/logs/*
           tests_integration/tm1models/24Retail/tm1server.log
-          tests_integration/tm1models/24Retail/tm1pocesserror*.log
+          tests_integration/tm1models/24Retail/tm1processerror*.log
     
     - name: Stop docker containers
       if: always()
