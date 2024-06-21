@@ -4,7 +4,7 @@
 586,
 585,
 564,
-565,"nsm<R;N=7u=@XVa1ReGTh3DFgs9DdpWODG>u[JJNwhgdmp`^ANoKhZiPQI5qDoqVnFG>:AC:2z9cfqp0`Oz9^Vl7sb=9D4Cp;FnOS@soYLUNO5UKj3:ERlLLi3ZESo?aGpMWWquiW\j5hD1^bNhPg`eRyZ`XCwhNRv2g2Vq;<BlBs=<2M3k<lLu]`UA_Yz[AyMKyauRP"
+565,"o[`phfHhq\S;MwNalpb[:1^O`8=mXHCAvXO_G6><inq;tL[Fjs>ilrh<MZlSnRvu`PvdJqRM\v<<W:tit3s<\MKk;hJ;LrFxywfxbbcsi2O]GoP1msG@m3IacAji:Kw:5aF?QN6JZsEiFPS:PDcNmj>^XQj4z616hLcG[XDo[z]8_UasPsxvtoqdxHiSASulq@WWc=Uw"
 559,1
 928,0
 593,
@@ -25,35 +25,25 @@
 569,0
 592,0
 599,1000
-560,0
-561,0
-590,0
-637,0
-577,2
+560,1
 testParam1
-testParam2
-578,2
+561,1
 2
-1
-579,2
-1
-2
-580,2
-0
-0
-581,2
-0
-0
-582,2
-VarType=32ColType=827
-VarType=33ColType=827
+590,1
+testParam1,"0"
+637,1
+testParam1,""
+577,0
+578,0
+579,0
+580,0
+581,0
+582,0
 603,0
-572,6
+572,4
 #****Begin: Generated Statements***
 #****End: Generated Statements****
 
-
-LogOutput('INFO', 'airflow_test_success executed. testParam1:' | testParam1);
 
 573,2
 #****Begin: Generated Statements***
@@ -61,9 +51,10 @@ LogOutput('INFO', 'airflow_test_success executed. testParam1:' | testParam1);
 574,2
 #****Begin: Generated Statements***
 #****End: Generated Statements****
-575,2
+575,3
 #****Begin: Generated Statements***
 #****End: Generated Statements****
+LogOutput('INFO', 'airflow_test_success executed, testParam1:' | testParam1);
 576,
 930,0
 638,1
