@@ -70,6 +70,8 @@ Timeout is defined in seconds, default value is 300 seconds. It's also important
 involve automatically the cancellation of the TI process. If `cancel_at_timeout` is set `True`, Airflow will make an attempt 
 to cancel the long-running TI process.
 
+For further examples, please see `tests_integration/dags` folder.
+
 ## Manual integration testing
 
 Use `tests_integration/docker-compose.yaml` as a baseline, which spins up an Airflow including the TM1 provider and a base TM1 database to test against. Please note that `tm1-docker` image is properietary IBM product wrapped in Docker by Knowledgeseed and therefore it is only available internally for Knowledgeseed developers.
