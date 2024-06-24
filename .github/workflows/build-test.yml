@@ -54,14 +54,8 @@ jobs:
       run: |
         cd tests_integration
         echo "Running tests..."
-        DOCKID=$(docker ps -q --filter "name=tests_integration-airflow-worker-1")
-        docker exec -i $DOCKID /bin/bash <<-EOF
-          airflow dags test airflow_test_success_dag > logs/integration_test_airflow_test_success_dag.log
-          airflow dags test airflow_test_aborted_dag >> logs/integration_test_airflow_test_aborted_dag.log
-          airflow dags test airflow_test_data_error_dag >> logs/integration_test_airflow_test_data_error_dag.log
-          airflow dags test airflow_test_timeout_dag >> logs/integration_test_airflow_test_timeout_dag.log
-          exit 0
-        EOF
+        pip install pytest
+        pytest tests.py
 
     - name: Archive production artifacts
       if: always()
