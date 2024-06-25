@@ -2,6 +2,7 @@ import logging
 import os
 import re
 import subprocess
+import time
 import pytest
 
 container_name = 'tests_integration-airflow-worker-1'
@@ -23,10 +24,22 @@ def assert_tm1server_log_contains(expected_line):
     test_folder = os.path.dirname(os.path.realpath(__file__))
     file_path = test_folder + '/tm1models/24Retail/tm1server.log'
 
-    with open(file_path, "r") as file:
-        file_content = file.read()
+    found = False
+    start_time = time.time()
+    timeout = 1
+    while not found:
+        time.sleep(0.1)
+        if time.time() - start_time > timeout:
+            print("Timeout reached. Exiting the loop.")
+            break
 
-    assert re.search(expected_line, file_content)
+        with open(file_path, "r") as file:
+            file_content = file.read()
+
+        found = re.search(expected_line, file_content)
+    assert found
+    
+    
 
 def assert_airflow_dag_log_contains(string, output):
     assert string in output
