@@ -1,3 +1,4 @@
+from datetime import datetime
 import logging
 import os
 import re
@@ -6,6 +7,11 @@ import time
 import pytest
 
 container_name = 'tests_integration-airflow-worker-1'
+
+@pytest.fixture(autouse=True)
+def setup_before_test(request):
+    # Code that runs before each test
+    print("\Executing ", request.node.name)
 
 def run_docker_exec(command):
     
@@ -39,8 +45,6 @@ def assert_tm1server_log_contains(expected_line):
         found = re.search(expected_line, file_content)
     assert found
     
-    
-
 def assert_airflow_dag_log_contains(string, output):
     assert string in output
 
