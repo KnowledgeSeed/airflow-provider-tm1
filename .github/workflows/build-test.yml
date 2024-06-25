@@ -55,7 +55,7 @@ jobs:
         cd tests_integration
         echo "Running tests..."
         pip install pytest
-        pytest integration_test.py
+        pytest integration_test.py -s
 
     - name: Archive production artifacts
       if: always()
