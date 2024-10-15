@@ -14,6 +14,8 @@ jobs:
   build:
     timeout-minutes: 15
     runs-on: ubuntu-latest
+    if: (github.event_name == 'pull_request_target' && contains(github.event.pull_request.labels.*.name, 'safe to test'))
+      || github.event_name == 'pull_request' || github.event_name == 'push'
     
     steps:
     - name: Checkout Code
